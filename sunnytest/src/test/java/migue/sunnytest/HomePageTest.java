@@ -1,5 +1,9 @@
 package migue.sunnytest;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -7,32 +11,38 @@ import org.testng.annotations.Test;
 
 public class HomePageTest {
 
+	WebDriver driver;
+	
     @BeforeClass
     public void setUp() {
-        // Code to set up resources before running tests
-        System.out.println("Setting up test environment...");
+        System.setProperty("webdriver.chrome.driver", "drivers/chromedriver-win64/chromedriver.exe");
+        
+        driver = new ChromeDriver();
+        
+        driver.get("https://the-internet.herokuapp.com/");
     }
 
     @Test
-    public void testMethod1() {
-        // Test logic for testMethod1
-        System.out.println("Running testMethod1...");
-        int actual = 5;
-        int expected = 5;
-        Assert.assertEquals(actual, expected, "Values do not match!");
+    public void testHomePageTitle() {
+    
+        String pageTitle = driver.getTitle();
+        
+        Assert.assertEquals(pageTitle, "The Internet", "Title does not match");
     }
 
     @Test
-    public void testMethod2() {
-        // Test logic for testMethod2
-        System.out.println("Running testMethod2...");
-        String str = "TestNG";
-        Assert.assertNotNull(str, "String should not be null");
+    public void testHomePageHeader() {
+    	
+    	WebElement header = driver.findElement(By.xpath("//*[@id=\"content\"]/h1"));
+    	
+    	Assert.assertEquals(header.getText(), "Welcome to the-internet");
+       
     }
 
     @AfterClass
     public void tearDown() {
-        // Code to release resources after all tests are done
-        System.out.println("Cleaning up test environment...");
+        if (driver!=null) {
+        	driver.quit();
+        }
     }
 }
