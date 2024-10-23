@@ -1,4 +1,4 @@
-package migue.sunnytest;
+package migue.sunnytest.tests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,10 +11,13 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import migue.sunnytest.drivers.WebDriverFactory;
+import migue.sunnytest.pages.HomePage;
 
 public class HomePageTest {
 
 	WebDriver driver;
+	private HomePage homePage;
 	
 	@Parameters("browser")
     @BeforeClass
@@ -23,6 +26,8 @@ public class HomePageTest {
     	driver = WebDriverFactory.getDriver(browser);
     	
         driver.get("https://the-internet.herokuapp.com/");
+        
+        homePage = new HomePage(driver);
     }
 
     @Test
@@ -36,9 +41,7 @@ public class HomePageTest {
     @Test
     public void testHomePageHeader() {
     	
-    	WebElement header = driver.findElement(By.xpath("//*[@id=\"content\"]/h1"));
-    	
-    	Assert.assertEquals(header.getText(), "Welcome to the-internet");
+    	Assert.assertEquals(homePage.getHeaderText(), "Welcome to the-internet");
        
     }
 

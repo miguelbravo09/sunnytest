@@ -6,7 +6,8 @@
         <parameter name="browser" value="chrome"/>
         <!-- Define classes to be run in the test -->
         <classes>
-            <class name="migue.sunnytest.HomePageTest"/>
+            <class name="migue.sunnytest.tests.HomePageTest"/>
+            <class name="migue.sunnytest.tests.ABPageTest"/>
             <!-- Add more classes here as needed -->
         </classes>
         
