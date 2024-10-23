@@ -8,6 +8,7 @@
         <classes>
             <class name="migue.sunnytest.tests.HomePageTest"/>
             <class name="migue.sunnytest.tests.ABPageTest"/>
+            <class name="migue.sunnytest.tests.AddRemoveElementsPageTest"/>
             <!-- Add more classes here as needed -->
         </classes>
         
