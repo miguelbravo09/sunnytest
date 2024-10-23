@@ -30,9 +30,19 @@ public class AddRemoveElementsPageTest {
     @Test
     public void testClickAddElementButton() {
             
-        WebElement button = addRemoveElementsPage.clickAddElementButton();
+        addRemoveElementsPage.clickAddElementButton();
         
-        Assert.assertTrue(button.isDisplayed(), "Element button is not displayed");
+        //Assert Element button is displayed
+        Assert.assertTrue(addRemoveElementsPage.isElementButtonDisplayed(), "Element button is not displayed");
+    }
+    
+    @Test
+    public void testClickElementButton() {
+            
+        addRemoveElementsPage.clickElementButton();
+        
+        //Assert Element button is displayed
+        Assert.assertFalse(addRemoveElementsPage.isElementButtonDisplayed(), "Element button is still displayed");
     }
     
 

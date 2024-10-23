@@ -10,35 +10,36 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-
 import migue.sunnytest.drivers.WebDriverFactory;
 import migue.sunnytest.pages.ABTestPage;
 
 public class ABPageTest {
 	WebDriver driver;
 	private ABTestPage aBTestPage;
-	
+
 	@Parameters("browser")
-    @BeforeClass
-    public void setUp(String browser) {
-    	driver = WebDriverFactory.getDriver(browser);
-        
-        driver.get("https://the-internet.herokuapp.com/abtest");
-        
-        aBTestPage = new ABTestPage(driver);
-    }
+	@BeforeClass
+	public void setUp(String browser) {
+		driver = WebDriverFactory.getDriver(browser);
 
-    @Test
-    public void testABTestPageTitle() {
-    	
-    	Assert.assertEquals(aBTestPage.getHeaderText(), "A/B Test Variation 1", "Title does not match");
-   }
+		driver.get("https://the-internet.herokuapp.com/abtest");
 
+		aBTestPage = new ABTestPage(driver);
+	}
 
-    @AfterClass
-    public void tearDown() {
-        if (driver!=null) {
-        	driver.quit();
-        }
-    }
+	@Test
+	public void testABTestPageTitle() {
+
+		String header = aBTestPage.getHeaderText();
+
+		Assert.assertTrue(header.equals("A/B Test Variation 1") || header.equals("A/B Test Control"),
+				"Title does not match");
+	}
+
+	@AfterClass
+	public void tearDown() {
+		if (driver != null) {
+			driver.quit();
+		}
+	}
 }
