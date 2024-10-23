@@ -3,7 +3,7 @@
 
     <!-- Define your test configuration -->
     <test name="TestName">
-        
+        <parameter name="browser" value="chrome"/>
         <!-- Define classes to be run in the test -->
         <classes>
             <class name="migue.sunnytest.HomePageTest"/>

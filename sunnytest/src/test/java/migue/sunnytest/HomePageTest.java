@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -15,13 +16,11 @@ public class HomePageTest {
 
 	WebDriver driver;
 	
+	@Parameters("browser")
     @BeforeClass
-    public void setUp() {
-        //System.setProperty("webdriver.chrome.driver", "drivers/chromedriver-win64/chromedriver.exe");
-                
-    	WebDriverManager.chromedriver().setup();
+    public void setUp(String browser) {
     	
-    	driver = new ChromeDriver();
+    	driver = WebDriverFactory.getDriver(browser);
     	
         driver.get("https://the-internet.herokuapp.com/");
     }
