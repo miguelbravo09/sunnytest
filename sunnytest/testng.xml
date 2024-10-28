@@ -1,14 +1,15 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="TestSuite" parallel="false">
+<suite name="TestSuite" parallel="classes" thread-count="4">
 
     <!-- Define your test configuration -->
     <test name="TestName">
         <parameter name="browser" value="chrome"/>
         <!-- Define classes to be run in the test -->
-        <classes>
+        <classes>    
             <class name="migue.sunnytest.tests.HomePageTest"/>
             <class name="migue.sunnytest.tests.ABPageTest"/>
             <class name="migue.sunnytest.tests.AddRemoveElementsPageTest"/>
+            <class name="migue.sunnytest.tests.BasicAuthTest"/>
             <!-- Add more classes here as needed -->
         </classes>
         
